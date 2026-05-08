@@ -106,7 +106,7 @@ function isSecure(protocol, authorized, daysLeft) {
 export default async function checkSSL(host) {
   return new Promise((resolve, reject) => {
     const socket = tls.connect({ port: 443, host, servername: host }, () => {
-      const cert = socket.getPeerCertificate();
+      const cert = socket.getPeerCertificate(true);
       const protocol = socket.getProtocol();
       const protocolStatus = translateTLS(protocol);
       const sans = cert.subjectaltname
@@ -140,8 +140,8 @@ export default async function checkSSL(host) {
         //trust
 
         trusted: socket.authorized
-          ? `Your certificate is trusted by all browsers - verfied by ${socket.getPeerCertificate().issuer.CN}`
-          : `Your certificate is not trusted by all browsers - verfied by ${socket.getPeerCertificate().issuer.CN}`,
+          ? `Your certificate is trusted by all browsers - verfied by ${cert.issuer.O || cert.issuer.CN}`
+          : `Your certificate is not trusted by all browsers - verfied by ${cert.issuer.O || cert.issuer.CN}`,
         authError: socket.authorizationError,
 
         //strength
