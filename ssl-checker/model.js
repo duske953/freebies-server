@@ -1,3 +1,4 @@
+import tls from 'tls';
 function translateTLS(protocol) {
   switch (protocol) {
     case 'TLSv1':
