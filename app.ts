@@ -1,6 +1,6 @@
 import express from 'express';
-import sslRouter from './ssl-checker/controller.js';
-import analyzeRouter from './anaylze-site/controller.ts';
+import sslRouter from './api/ssl-checker/controller.ts';
+import analyzeRouter from './api/anaylze-site/controller.ts';
 import cors from 'cors';
 const app = express();
 app.use(express.json());

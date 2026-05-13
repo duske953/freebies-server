@@ -1,5 +1,5 @@
 import express from 'express';
-import checkSSL from './model.js';
+import checkSSL from './model.ts';
 const router = express.Router();
 
 router.post('/', async (req, res) => {

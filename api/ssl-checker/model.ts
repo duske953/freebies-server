@@ -1,5 +1,5 @@
 import tls from 'tls';
-function translateTLS(protocol) {
+function translateTLS(protocol: string) {
   switch (protocol) {
     case 'TLSv1':
       return {
@@ -39,7 +39,7 @@ function translateTLS(protocol) {
   }
 }
 
-function isSecure(protocol, authorized, daysLeft) {
+function isSecure(protocol: string, authorized: boolean, daysLeft: number) {
   const modernTLS = ['TLSv1.2', 'TLSv1.3'].includes(protocol);
   const expired = daysLeft <= 0;
   const expiringSoon = daysLeft > 0 && daysLeft < 30;
@@ -103,12 +103,12 @@ function isSecure(protocol, authorized, daysLeft) {
   };
 }
 
-export default async function checkSSL(host) {
+export default async function checkSSL(host: string) {
   return new Promise((resolve, reject) => {
     const socket = tls.connect({ port: 443, host, servername: host }, () => {
       const cert = socket.getPeerCertificate(true);
       const protocol = socket.getProtocol();
-      const protocolStatus = translateTLS(protocol);
+      const protocolStatus = translateTLS(protocol as string);
       const sans = cert.subjectaltname
         ?.split(', ')
         .map((s) => s.replace('DNS:', ''));
@@ -120,7 +120,7 @@ export default async function checkSSL(host) {
 
       const expiryDate = new Date(cert.valid_to);
       const daysLeft = Math.ceil(
-        (expiryDate - new Date()) / (1000 * 60 * 60 * 24),
+        (expiryDate.getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24),
       );
 
       resolve({
@@ -136,7 +136,7 @@ export default async function checkSSL(host) {
         //protcol
         protocol: socket.getProtocol(),
         cipher: socket.getCipher(),
-        secure: isSecure(protocol, socket.authorized, daysLeft),
+        secure: isSecure(protocol as string, socket.authorized, daysLeft),
         //trust
 
         trusted: socket.authorized

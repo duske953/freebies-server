@@ -1,9 +1,9 @@
-import { getPageData } from '../utils';
+import { getPageData } from '../utils.ts';
 import * as cheerio from 'cheerio';
-import { analyzeLinks } from './analyzeLinks';
-import { analyzeImages } from './analyzeImages';
-import { analyzeSeo } from './analyzeSeo';
-import { analyzeHeadings } from './analyzeHeadings';
+import { analyzeLinks } from './analyzeLinks.ts';
+import { analyzeImages } from './analyzeImages.ts';
+import { analyzeSeo } from './analyzeSeo.ts';
+import { analyzeHeadings } from './analyzeHeadings.ts';
 
 export async function analyzeSite(url: string) {
   const { html } = await getPageData(url);
