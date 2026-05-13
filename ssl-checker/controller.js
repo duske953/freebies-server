@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
     .replace('www.', '')
     .split('/')[0];
   const result = await checkSSL(host);
-  res.json(result);
+  res.status(200).json(result);
 });
 
 export default router;
