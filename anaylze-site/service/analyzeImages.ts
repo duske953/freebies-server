@@ -1,4 +1,4 @@
-import { checkResource, getPageData, processUrlData } from '../utils.ts';
+import { checkResource, getPageData, processUrlData } from '../utils';
 import * as cheerio from 'cheerio';
 
 export async function analyzeImages(url: string, $: cheerio.CheerioAPI) {

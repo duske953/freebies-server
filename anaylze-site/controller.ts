@@ -1,5 +1,5 @@
 import express from 'express';
-import { analyzeSite } from './service/analyzeSite.ts';
+import { analyzeSite } from './service/analyzeSite';
 const router = express.Router();
 
 router.post('/', async (req, res) => {
