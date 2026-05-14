@@ -4,13 +4,12 @@
     // File Layout
     // "rootDir": "./src",
     "outDir": "./dist",
-    "allowImportingTsExtensions": true,
     "noEmit": true,
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "commonjs",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "target": "esnext",
 
     "esModuleInterop": true,
@@ -20,6 +19,8 @@
     "lib": ["esnext"],
     "types": ["node"],
 
+    "allowImportingTsExtensions": false,
+    "rewriteRelativeImportExtensions": true,
     // and npm install -D @types/node
 
     // Other Outputs
@@ -42,7 +43,7 @@
     // Recommended Options
     "strict": true,
     "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": false,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
