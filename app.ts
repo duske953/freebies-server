@@ -15,6 +15,4 @@ app.use(
 app.use('/check-ssl', sslRouter);
 app.use('/analyze-site', analyzeRouter);
 
-app.listen(process.env.PORT || 4000, () => {
-  console.log(`Server started on port ${process.env.PORT || 4000}`);
-});
+export default app;

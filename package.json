@@ -5,9 +5,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.ts",
-    "build": "ts-node app.ts"
+    "dev": "ts-node app.ts",
+    "build": "tsc",
+    "start": "node dist/app.js"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,7 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/node": "^25.7.0",
+    "@vercel/node": "^5.8.1",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
   }
