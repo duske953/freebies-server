@@ -5,9 +5,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "ts-node app.ts",
-    "build": "tsc --project tsconfig.build.json",
-    "start": "node dist/app.js"
+    "dev": "ts-node app.ts"
   },
   "keywords": [],
   "author": "",
