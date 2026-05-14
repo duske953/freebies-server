@@ -21,7 +21,8 @@ export async function analyzeSite(url: string) {
         hasTitle: data.seo?.hasTitle
           ? {
               field: 'hasTitle',
-              title: data.seo.title,
+              title: 'Page title is set',
+              description: data.seo.title,
               severity: 'pass',
               message:
                 "Google uses this as your first impression in search results, you're covered.",
@@ -192,21 +193,14 @@ export async function analyzeSite(url: string) {
                 'Your page has no main heading, Google has to guess what the page is about. Add one that clearly describes the page topic.',
             },
 
-        multipleH1: data.headings?.status?.multipleH1
-          ? {
-              field: 'multipleH1',
-              severity: 'critical',
-              title: 'Multiple H1 tags found',
-              message:
-                "Your page is sending mixed signals about what it's actually about. Keep one H1, your page's core headline, and demote the rest to H2.",
-            }
-          : {
-              field: 'multipleH1',
-              severity: 'pass',
-              title: 'Only one H1, as it should be',
-              message:
-                'Your page has a single, clear main topic. Search engines and screen readers both prefer this.',
-            },
+        multipleH1: data.headings.status.hasH1 === true &&
+          data.headings?.status?.multipleH1 && {
+            field: 'multipleH1',
+            severity: 'critical',
+            title: 'Multiple H1 tags found',
+            message:
+              "Your page is sending mixed signals about what it's actually about. Keep one H1, your page's core headline, and demote the rest to H2.",
+          },
 
         h2Count:
           data.headings?.counts.h2 === 0
