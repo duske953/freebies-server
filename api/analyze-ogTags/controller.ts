@@ -1,16 +1,16 @@
 import express from 'express';
+import analyzeOgTags from './service.ts';
 import cleanUrl from '../../utils/cleanUrl.ts';
-import analyzeSite from './service/analyzeSite.ts';
-import type { Request, Response } from 'express';
+
 const router = express.Router();
 
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', async (req, res) => {
   let { url } = req.body;
   if (!url) {
     return res.status(400).json({ error: 'URL is required' });
   }
   url = cleanUrl(url);
-  const data = await analyzeSite(url);
+  const data = await analyzeOgTags(url);
   res.status(200).json(data);
 });
 

@@ -3,7 +3,6 @@ import * as cheerio from 'cheerio';
 export function analyzeSeo(url: string, $: cheerio.CheerioAPI) {
   const titleTag = $('title').first();
   const hasTitle = !!titleTag.text().trim();
-
   const hasDescription = !!$('meta[name="description"]')
     .first()
     .attr('content');

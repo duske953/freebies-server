@@ -1,8 +1,10 @@
 import express from 'express';
-import sslRouter from './api/ssl-checker/controller.ts';
-import analyzeRouter from './api/anaylze-site/controller.ts';
 import cors from 'cors';
 import limiter from './utils/rateLimiter.ts';
+import appRouter from './utils/router.ts';
+import analyzeSiteRouter from './api/anaylze-site/controller.ts';
+import analyzeOgTagsRouter from './api/analyze-ogTags/controller.ts';
+import checkSslRouter from './api/ssl-checker/controller.ts';
 const app = express();
 
 // rate limiter
@@ -21,8 +23,14 @@ app.use(
 );
 
 // routes
-app.use('/check-ssl', sslRouter);
-app.use('/analyze-site', analyzeRouter);
 
-// server
+appRouter.use('/analyze-site', analyzeSiteRouter);
+appRouter.use('/analyze-og-tags', analyzeOgTagsRouter);
+appRouter.use('/check-ssl', checkSslRouter);
+app.use('/api/v1', appRouter);
+
 export default app;
+
+// app.listen(3000, () => {
+//   console.log('Server is running on port 3000');
+// });

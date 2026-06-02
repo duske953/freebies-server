@@ -36,7 +36,7 @@ export async function analyzeImages(url: string, $: cheerio.CheerioAPI) {
       ...new Map(images.map((img) => [img.url, img])).values(),
     ];
 
-    const d = await Promise.all(
+    const checkedImages = await Promise.all(
       uniqueUrls.map(async (img) => {
         return await checkResource(img.url as string);
       }),
@@ -44,9 +44,11 @@ export async function analyzeImages(url: string, $: cheerio.CheerioAPI) {
 
     return {
       totalImages: images.length,
-      brokenImages: d.filter((img: any) => !img.ok && !img.isBotProtected)
+      brokenImages: checkedImages.filter(
+        (img: any) => !img.ok && !img.isBotProtected,
+      ).length,
+      protectedImages: checkedImages.filter((img: any) => img.isBotProtected)
         .length,
-      protectedImages: d.filter((img: any) => img.isBotProtected).length,
       missingAlt: uniqueUrls.filter((img) => !img.hasAlt).length,
       uniqueImages: images.length - uniqueUrls.length,
     };

@@ -5,7 +5,7 @@ import { analyzeImages } from './analyzeImages.ts';
 import { analyzeSeo } from './analyzeSeo.ts';
 import { analyzeHeadings } from './analyzeHeadings.ts';
 
-export async function analyzeSite(url: string) {
+export default async function analyzeSite(url: string) {
   const { html } = await getPageData(url);
   const $ = cheerio.load(html);
   try {
