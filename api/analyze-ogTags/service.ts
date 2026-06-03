@@ -17,6 +17,5 @@ export default async function analyzeOgTags(url: string) {
     ogType,
     ogName,
     ogUrl,
-    name: 'ken',
   };
 }
