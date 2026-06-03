@@ -19,7 +19,7 @@ export async function getPageData(url: string) {
   }
 
   const html = await response.text();
-  return { html, status: response.status };
+  return { html, status: response.status, headers: response.headers };
 }
 
 export async function processUrlData(url: string, method: string) {

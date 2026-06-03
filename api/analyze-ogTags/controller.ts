@@ -1,5 +1,5 @@
 import express from 'express';
-import analyzeOgTags from './service.ts';
+import analyzeSocialPreview from './service/analyzeSocialPreview.ts';
 import cleanUrl from '../../utils/cleanUrl.ts';
 
 const router = express.Router();
@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
     return res.status(400).json({ error: 'URL is required' });
   }
   url = cleanUrl(url);
-  const data = await analyzeOgTags(url);
+  const data = await analyzeSocialPreview(url);
   res.status(200).json(data);
 });
 
