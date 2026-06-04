@@ -11,7 +11,11 @@ export default function detectPlatform(
     html.includes('/wp-content/')
   )
     return 'wordpress';
-  if (generator.toLowerCase().includes('squarespace')) return 'squarespace';
+  if (
+    generator.toLowerCase().includes('squarespace') ||
+    html.includes('squarespace')
+  )
+    return 'squarespace';
   if (generator.toLowerCase().includes('webflow') || html.includes('webflow'))
     return 'webflow';
   if (generator.toLowerCase().includes('shopify') || html.includes('shopify'))
