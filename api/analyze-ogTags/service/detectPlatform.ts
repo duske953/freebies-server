@@ -18,6 +18,7 @@ export default function detectPlatform(
     return 'squarespace';
   if (generator.toLowerCase().includes('webflow') || html.includes('webflow'))
     return 'webflow';
+  if (html.includes('wix') || html.includes('wixstatic.com')) return 'wix';
   if (generator.toLowerCase().includes('shopify') || html.includes('shopify'))
     return 'shopify';
   if (generator.toLowerCase().includes('framer') || html.includes('framer'))
